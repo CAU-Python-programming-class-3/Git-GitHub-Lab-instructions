@@ -6,22 +6,16 @@
 
 ---
 
-## 사전 확인
-
-- [ ] git-practice와 git-practice-2가 Sourcetree에 모두 열려 있음
-- [ ] 두 로컬 모두 1주차 최종 상태 (grades.py, README.md push 완료)
-- [ ] Terminal(Mac) 또는 PowerShell(Windows) 실행 가능
-
----
-
 ## 역할 설정
 
 오늘 실습에서 두 로컬 repo는 각각 다른 팀원의 컴퓨터 역할을 합니다.
 
-| 로컬 repo | 역할 | 담당 작업 |
-|---|---|---|
-| git-practice | 팀원 A (나) | feature/grade-converter 브랜치 |
-| git-practice-2 | 팀원 B (가상) | feature/file-io 브랜치 |
+| 로컬 repo | 역할 | 주요 툴 | 담당 작업 |
+|---|---|---|---|
+| git-practice | 팀원 A (나) | **CLI 중심** | feature/grade-converter 브랜치 |
+| git-practice-2 | 팀원 B (가상) | **Sourcetree 중심** | feature/file-io 브랜치 |
+
+> 💡 같은 Git 동작을 CLI와 Sourcetree 두 가지 방법으로 모두 경험합니다.
 
 ---
 
@@ -29,9 +23,7 @@
 
 **목표**: 지난 주에 Sourcetree로 한 동작을 CLI로 확인하기
 
-### Step 1-1. class remote 추가 및 실습 지시서 pull
-
-Terminal에서 git-practice 폴더로 이동하세요.
+### Step 1-1. Terminal에서 git-practice 폴더로 이동
 
 Mac:
 ```bash
@@ -42,22 +34,6 @@ Windows:
 ```powershell
 cd Documents\git-practice
 ```
-
-class remote를 추가하고 이 실습 지시서를 pull하세요.
-
-```bash
-# remote 추가
-git remote add class https://github.com/[org이름]/gradebook-class.git
-
-# 추가된 remote 확인
-git remote -v
-
-# 실습 지시서 pull
-git pull class main
-```
-
-> 💡 remote 이름은 자유롭게 붙일 수 있습니다.  
-> `origin`은 본인 GitHub repo, `class`는 수업용 repo입니다.
 
 ### Step 1-2. 기본 CLI 명령어 실행
 
@@ -110,7 +86,7 @@ Sourcetree 그래프에서 새 노드가 생기고
 
 ---
 
-### [팀원 A] Step 2-1. 현재 브랜치 확인
+### [팀원 A · CLI] Step 2-1. 현재 브랜치 확인
 
 ```bash
 git branch
@@ -120,7 +96,7 @@ git branch
 
 ---
 
-### [팀원 A] Step 2-2. feature/grade-converter 브랜치 생성
+### [팀원 A · CLI] Step 2-2. feature/grade-converter 브랜치 생성
 
 ```bash
 git switch -c feature/grade-converter
@@ -138,7 +114,7 @@ Sourcetree 그래프 확인:
 
 ---
 
-### [팀원 A] Step 2-3. converter.py 작성 후 commit → push
+### [팀원 A · CLI] Step 2-3. converter.py 작성 후 commit → push
 
 VS Code에서 `converter.py` 파일을 새로 만들고 아래 코드를 작성하세요.
 
@@ -178,20 +154,16 @@ README.md `## 기능` 섹션에 아래 항목을 추가하세요.
 - 점수 → 학점 변환 (A+~F)
 ```
 
-Sourcetree에서 두 파일을 함께 staging하고 commit하세요.
-
-```
-commit 메시지: "Add grade converter + update README"
-```
-
-feature 브랜치를 원격에 push하세요.
+CLI로 staging, commit, push합니다.
 
 ```bash
+git add converter.py README.md
+git commit -m "Add grade converter + update README"
 git push -u origin feature/grade-converter
 ```
 
-> 💡 `-u origin feature/grade-converter`는 처음 push할 때 원격 브랜치와 연결하는 옵션입니다.  
-> 이후에는 `git push`만으로 됩니다.
+> 💡 `-u origin feature/grade-converter`는 처음 push할 때  
+> 원격 브랜치와 연결하는 옵션입니다. 이후에는 `git push`만으로 됩니다.
 
 Sourcetree 그래프 확인:
 - `feature/grade-converter`가 `main`보다 **앞서** 있는 상태
@@ -200,38 +172,35 @@ Sourcetree 그래프 확인:
 
 ---
 
-### [팀원 B] Step 2-4. git-practice-2에서 pull → feature/file-io 브랜치 생성
+### [팀원 B · Sourcetree] Step 2-4. git-practice-2에서 pull → feature/file-io 브랜치 생성
 
 Sourcetree에서 **git-practice-2 탭**으로 전환하세요.
 
-Pull을 실행해서 팀원 A가 push한 내용을 받아오세요.
-
-```
-Sourcetree Pull 버튼 클릭
-```
+**Sourcetree Pull 버튼**을 클릭해서 팀원 A가 push한 내용을 받아오세요.
 
 Sourcetree 그래프 확인:
 - `origin/feature/grade-converter`가 보이는지 확인
-- 팀원 A의 브랜치가 원격에 올라온 것을 팀원 B도 볼 수 있습니다
 
-git-practice-2 폴더에서 Terminal을 열고 feature/file-io 브랜치를 생성하세요.
+이제 Sourcetree에서 feature/file-io 브랜치를 생성합니다.
 
-```bash
-cd Documents/git-practice-2
-git switch -c feature/file-io
 ```
-
-> 💡 팀원 B는 **main 기준으로** 브랜치를 생성합니다.  
-> 팀원 A의 feature/grade-converter와 **같은 분기점**에서 갈라집니다.
+Sourcetree 상단 Branch 버튼 클릭
+→ New Branch 이름 입력: feature/file-io
+→ Checkout New Branch 체크 확인
+→ Create Branch 클릭
+```
 
 Sourcetree 그래프 확인:
 - `feature/file-io`(팀원 B)와 `origin/feature/grade-converter`(팀원 A)가
   **같은 분기점에서 갈라진** 모습
-- **이것이 두 사람이 독립적으로 개발하는 모습입니다**
+- HEAD가 `feature/file-io`로 이동한 것 확인
+
+> 💡 팀원 B는 **main 기준으로** 브랜치를 생성합니다.  
+> 팀원 A의 feature/grade-converter와 **같은 분기점**에서 갈라집니다.
 
 ---
 
-### [팀원 B] Step 2-5. file_io.py 작성 후 commit → push
+### [팀원 B · Sourcetree] Step 2-5. file_io.py 작성 후 commit → push
 
 VS Code에서 git-practice-2 폴더의 `file_io.py` 파일을 새로 만들고 아래 코드를 작성하세요.
 
@@ -278,16 +247,20 @@ README.md `## 기능` 섹션에 아래 항목을 추가하세요.
 - 점수 파일 저장 / 불러오기
 ```
 
-Sourcetree에서 staging하고 commit하세요.
+**Sourcetree에서** staging하고 commit합니다.
 
 ```
+Unstaged 칸에서 file_io.py, README.md, .gitignore 모두 Staged로 이동
 commit 메시지: "Add file save/load + update README"
+Commit 버튼 클릭
 ```
 
-feature 브랜치를 원격에 push하세요.
+**Sourcetree Push 버튼**으로 원격에 push합니다.
 
-```bash
-git push -u origin feature/file-io
+```
+Push 버튼 클릭
+→ feature/file-io 브랜치 선택 확인
+→ Push 실행
 ```
 
 Sourcetree 그래프 확인:
@@ -297,48 +270,53 @@ Sourcetree 그래프 확인:
 
 ---
 
-### [팀원 A] Step 2-6. 두 브랜치 확인 후 main에 순차 merge
+### [팀원 A · Sourcetree] Step 2-6. 두 브랜치를 main에 순차 merge
 
-git-practice 탭으로 전환하고 pull을 실행하세요.
+git-practice 탭으로 전환하고 CLI로 최신 상태를 확인합니다.
 
 ```bash
 git switch main
 git pull
-```
-
-원격에 올라온 두 브랜치를 확인하세요.
-
-```bash
 git branch -a
 ```
 
 `origin/feature/grade-converter`와 `origin/feature/file-io`가 모두 보이는지 확인하세요.
 
-**feature/grade-converter를 main에 먼저 merge합니다.**
+**이제 Sourcetree에서 merge합니다.**
 
-```bash
-git merge feature/grade-converter
+**feature/grade-converter를 먼저 merge:**
+
+```
+Sourcetree 그래프에서 feature/grade-converter 노드 우클릭
+→ "Merge feature/grade-converter into current branch" 클릭
+→ OK
 ```
 
 Sourcetree 그래프 확인:
 - **Fast-forward merge** 발생
 - main 포인터가 `feature/grade-converter` 노드로 이동
-- merge commit이 생기지 않고 일직선으로 이동
+- merge commit 없이 일직선으로 이동
 
 > 💡 **Fast-forward merge**: feature 브랜치가 분기된 이후  
 > main에 새 commit이 없었으므로 포인터만 앞으로 이동합니다.
 
-브랜치를 삭제하고 push합니다.
-
-```bash
-git branch -d feature/grade-converter
-git push
+브랜치 삭제:
+```
+Sourcetree 좌측 브랜치 목록에서 feature/grade-converter 우클릭
+→ Delete feature/grade-converter 클릭
 ```
 
-**feature/file-io를 main에 merge합니다.**
+Push:
+```
+Sourcetree Push 버튼 클릭
+```
 
-```bash
-git merge feature/file-io
+**feature/file-io를 main에 merge:**
+
+```
+Sourcetree 그래프에서 origin/feature/file-io 노드 우클릭
+→ "Merge origin/feature/file-io into current branch" 클릭
+→ OK
 ```
 
 Sourcetree 그래프 확인:
@@ -349,29 +327,32 @@ Sourcetree 그래프 확인:
 > main에 `feature/grade-converter` merge로 새 commit이 생겼기 때문에  
 > 단순 포인터 이동이 아닌 merge commit이 만들어집니다.
 
-```bash
-git branch -d feature/file-io
-git push
+브랜치 삭제 후 Push:
+```
+feature/file-io 우클릭 → Delete
+Sourcetree Push 버튼 클릭
 ```
 
 GitHub 웹에서 commit history를 확인하세요.
 
 ---
 
-### [팀원 B] Step 2-7. git-practice-2에서 최종 pull
+### [팀원 B · CLI] Step 2-7. git-practice-2에서 최종 pull
 
-git-practice-2 탭으로 전환하고 pull을 실행하세요.
+git-practice-2 폴더 터미널에서 CLI로 pull합니다.
 
 ```bash
+cd Documents/git-practice-2
 git switch main
 git pull
+git log --oneline --graph
 ```
 
 Sourcetree 그래프 확인:
 - git-practice와 동일한 그래프가 보이는지 확인
 - `converter.py`와 `file_io.py`가 로컬에 생겼는지 확인
 
-> 💡 팀원 B의 로컬이 팀원 A가 merge한 결과를 pull로 받아서  
+> 💡 팀원 B의 로컬이 팀원 A가 merge한 결과를 받아서  
 > 두 사람의 작업이 하나로 통합된 상태가 됩니다.
 
 ---
@@ -392,7 +373,7 @@ Sourcetree 그래프 확인:
 ...
 ```
 
-터미널에서도 동일하게 확인하세요.
+CLI로도 동일하게 확인하세요.
 
 ```bash
 git log --oneline --graph
@@ -402,13 +383,15 @@ git log --oneline --graph
 
 ## 핵심 개념 정리
 
-| 개념 | 설명 |
-|---|---|
-| Branch | 특정 commit을 가리키는 포인터. 파일 복사가 아닙니다. |
-| HEAD | 현재 내가 작업 중인 위치. 브랜치 전환 시 이동합니다. |
-| `git switch -c` | 브랜치 생성 + 전환 동시에 |
-| `git push -u origin 브랜치명` | 처음 feature 브랜치를 원격에 push할 때 |
-| Fast-forward merge | 분기 이후 main에 새 commit이 없을 때 → 포인터만 이동, merge commit 없음 |
-| Merge commit | 분기 이후 양쪽에 새 commit이 있을 때 → 합치는 새 commit 생성 |
-| `git branch -a` | 로컬 + 원격 브랜치 전체 목록 확인 |
-| `git branch -d` | merge 완료된 브랜치 삭제 |
+| 개념 | CLI | Sourcetree |
+|---|---|---|
+| 브랜치 생성 + 전환 | `git switch -c 브랜치명` | Branch 버튼 → New Branch |
+| 브랜치 목록 확인 | `git branch -a` | 좌측 브랜치 패널 |
+| Staging | `git add 파일명` | Unstaged → Staged 이동 |
+| Commit | `git commit -m "메시지"` | Commit 버튼 |
+| Push (첫 번째) | `git push -u origin 브랜치명` | Push 버튼 → 브랜치 선택 |
+| Merge | `git merge 브랜치명` | 노드 우클릭 → Merge |
+| 브랜치 삭제 | `git branch -d 브랜치명` | 브랜치 우클릭 → Delete |
+| Pull | `git pull` | Pull 버튼 |
+| Fast-forward merge | 분기 후 main에 새 commit 없음 → 포인터만 이동 | 일직선 그래프 |
+| Merge commit | 분기 후 양쪽에 새 commit 있음 → 새 commit 생성 | 두 선이 합쳐지는 그래프 |
