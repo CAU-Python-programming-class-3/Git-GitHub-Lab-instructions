@@ -219,7 +219,9 @@ __marimo__/
 
 .DS_Store
 
+# Supplemental documents
 INSTRUCTIONS_lecture2.md
 SETUP_lecture2.md
 INSTRUCTIONS_lecture3.md
 SETUP_lecture3.md
+starter/
